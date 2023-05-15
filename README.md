@@ -3,6 +3,6 @@ This repository is a supplement to my master's thesis, "Text Classification via 
 
 The folder  ``datasets`` contains datasets with the preprocessed and lemmatized human-written and machine-generated texts that were used in the experiments of the thesis.
 
-The original texts in  ``essays.csv`` were obtained from https://github.com/rexshijaku/chatgpt-generated-text-detection-corpus.
+The original texts in  ``essays.csv`` were obtained from the [ChatGPT Generated Text Detection Corpus](https://github.com/rexshijaku/chatgpt-generated-text-detection-corpus).
 
-The original texts in  ``webtext.csv`` and files with names starting with "gpt2" were obtained from https://github.com/openai/gpt-2-output-dataset.
+The original texts in  ``webtext.csv`` and files with names starting with "gpt2" were obtained from the [GPT-2 Output Dataset](https://github.com/openai/gpt-2-output-dataset).
