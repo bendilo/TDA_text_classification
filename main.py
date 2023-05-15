@@ -60,7 +60,6 @@ def preprocess_df(dataframe):
     return df
     
     
-lemma = nltk.WordNetLemmatizer() 
 
 # Load the lemmatizer from the nltk-library.
 lemma = nltk.WordNetLemmatizer() 
