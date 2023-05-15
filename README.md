@@ -1,1 +1,1 @@
-# TDA_text_classification
+# Text Classification via Topological Data Analysis
