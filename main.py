@@ -120,8 +120,9 @@ def sbert_matrix(document):
 
 
 
-#GloVe embeddings
-gloveFile = "glove.6B.50d.txt"
+# GloVe embeddings
+gloveFile = "glove.6B.50d.txt" # Pre-trained GloVe vector file from https://nlp.stanford.edu/data/glove.6B.zip
+# You must download this file yourself.
 
 def loadGloveModel(gloveFile):
     print("Loading GloVe model")
