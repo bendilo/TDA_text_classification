@@ -310,7 +310,7 @@ def text_to_matrix(embedding):
 
 def text_to_image_transformer(algorithm="tfidf", embedding="SIFTS", dimension=1, sigma=0.001, grid_size=100):
     '''
-    Returns a function transformer compatiblle with machine learning pipelines in sklearn
+    Returns a function transformer compatible with machine learning pipelines in sklearn
     that transforms an array of preprocessed text documents 
     to an array of corresponding persistence images with user specified parameters
     for a given embedding method.
