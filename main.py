@@ -121,26 +121,26 @@ def sbert_matrix(document):
 
 
 # GloVe embeddings
-gloveFile = "glove.6B.50d.txt" # Pre-trained GloVe vector file from https://nlp.stanford.edu/data/glove.6B.zip
+glove_file = "glove.6B.50d.txt" # Pre-trained GloVe vector file from https://nlp.stanford.edu/data/glove.6B.zip
 # You must download this file yourself.
 
-def loadGloveModel(gloveFile):
+def load_glove_model(glove_file):
     print("Loading GloVe model")
-    with open(gloveFile, encoding="utf8" ) as f:
+    with open(glove_file, encoding="utf8" ) as f:
         content = f.readlines()
         
     model = {}
     
     for line in content:
-        splitLine = line.split()
-        word = splitLine[0]
-        embedding = np.array([float(val) for val in splitLine[1:]])
-        model[word] = embedding
+        split_line = line.split()
+        word = split_line[0]
+        vector = np.array([float(val) for val in split_line[1:]])
+        model[word] = vector
     print("GloVe model loaded successfully")
     return model
 
 # Load the GloVe model from the given directory
-glove = loadGloveModel(gloveFile)
+glove = load_glove_model(glove_file)
 
 
 #A function that returns the GloVe embedding of a given word if it exists, and a 50-dimensional zero vector if not.
