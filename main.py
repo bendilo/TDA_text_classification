@@ -310,29 +310,28 @@ def text_to_matrix(embedding):
 
 
 def text_to_image_transformer(algorithm, embedding, dimension, sigma, grid_size):
-'''
-Returns a function transformer compatible with machine learning pipelines in sklearn,
-that transforms an array of preprocessed text documents to an array of corresponding 
-persistence images, with user specified parameters for a given embedding method.
+    '''
+    Returns a function transformer compatible with machine learning pipelines in sklearn,
+    that transforms an array of preprocessed text documents to an array of corresponding 
+    persistence images, with user specified parameters for a given embedding method.
 
-PARAMETERS:
+    PARAMETERS:
 
-algorithm : {"SIF", "SIFTS"}
-Choose which TDA-algorithm to apply on the text embeddings.
-    
-embedding : {"tfidf", "sbert", "glove"}
-Selects which vector embedding method to use on the texts.
-    
-dimension : {0, 1}
-Selects the dimension of persistence diagram to generate a persistence image from.
-    
-sigma     : float
-The parameter sigma in the Gaussian distribution used in persistence images.
-    
-grid_size : int
-Select persistence image resolution, which will be (grid_size * grid_size).
-'''
+    algorithm : {"SIF", "SIFTS"}
+    Choose which TDA-algorithm to apply on the text embeddings.
 
+    embedding : {"tfidf", "sbert", "glove"}
+    Selects which vector embedding method to use on the texts.
+
+    dimension : {0, 1}
+    Selects the dimension of persistence diagram to generate a persistence image from.
+
+    sigma     : float
+    The parameter sigma in the Gaussian distribution used in persistence images.
+
+    grid_size : int
+    Select persistence image resolution, which will be (grid_size * grid_size).
+    '''
     # Define a function that transforms a text to a 
     # persistence image with desired parameters.
     def text_to_image(text):
