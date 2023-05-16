@@ -309,21 +309,32 @@ def text_to_matrix(embedding):
         
 
 
-def text_to_image_transformer(algorithm="tfidf", embedding="SIFTS", dimension=1, sigma=0.001, grid_size=100):
-    '''
-    Returns a function transformer compatible with machine learning pipelines in sklearn
-    that transforms an array of preprocessed text documents 
-    to an array of corresponding persistence images with user specified parameters
-    for a given embedding method.
-    
-    Variables:
-    algorithm: "SIFTS" or "SIF" #choose which TDA-text algorithm to use
-    embedding: "tfidf", "glove" or "sbert" #which embedding method to use
-    dimension: 0 or 1  #which dimension in the persistence diagram to transform to persistence image. Default: 1
-    sigma: float value #which value for sigma in the normal distribution in persim
-    grid_size: size of grid in the persistence image. default: 100 (yielding an image of resolution 100x100)
-    '''
+def text_to_image_transformer(algorithm, embedding, dimension, sigma, grid_size):
+'''
+Returns a function transformer compatible with machine learning pipelines in sklearn,
+that transforms an array of preprocessed text documents to an array of corresponding 
+persistence images, with user specified parameters for a given embedding method.
 
+PARAMETERS:
+
+algorithm : {"SIF", "SIFTS"}
+Choose which TDA-algorithm to apply on the text embeddings.
+    
+embedding : {"tfidf", "sbert", "glove"}
+Selects which vector embedding method to use on the texts.
+    
+dimension : {0, 1}
+Selects the dimension of persistence diagram to generate a persistence image from.
+    
+sigma     : float
+The parameter sigma in the Gaussian distribution used in persistence images.
+    
+grid_size : int
+Select persistence image resolution, which will be (grid_size * grid_size).
+'''
+
+    # Define a function that transforms a text to a 
+    # persistence image with desired parameters.
     def text_to_image(text):
         A = text_to_matrix(embedding)(text)
         D = angular_distance_matrix(A)
@@ -333,14 +344,17 @@ def text_to_image_transformer(algorithm="tfidf", embedding="SIFTS", dimension=1,
         else:
             intervals = intervals_in_dimension(dimension,SIF(D))
         
-        pimgr = PersistenceImager(pixel_size = 1/grid_size, 
-                              birth_range = (0, 1), 
-                              pers_range = (0, 1), 
-                              kernel_params = {'sigma': sigma})
+        pimgr = PersistenceImager(pixel_size    = 1 / grid_size, 
+                                  birth_range   = (0, 1), 
+                                  pers_range    = (0, 1), 
+                                  kernel_params = {'sigma': sigma})
+                              
         imgs = pimgr.transform(intervals)
         imgs_array = imgs.flatten()
         return imgs_array
-    
+
+    # Define a function transforms an array of texts
+    # into an array of corresponding persistence images
     def corpus_to_images(array):
         return np.array([text_to_image(item) for item in array])
     
